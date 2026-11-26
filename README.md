@@ -16,6 +16,10 @@ Desde este entorno no hubo acceso a los portales del Estado (IGM/SIGTIERRAS, MAA
 - Por eso las columnas se llaman `plant_*` y no `euc_*`. Cuando tengamos el mapa real de eucalipto (polígonos "Eucalipto" del mapa IEE/MAGAP 1:25 000 o la clasificación Sentinel-2 de `scripts/gee_clasificacion_eucalipto.js`), se vuelve a correr `scripts/build_eucalipto.py` cambiando la máscara de plantación. Así salen `euc_pct`, `euc_dist`, etc. con exactamente la misma estructura.
 - La variable `arbol_mosaico_pct2000` (cobertura arbórea de Hansen dentro del mosaico agropecuario) sirve como proxy del eucalipto disperso en linderos, que es muy común en el valle interandino.
 
+## v2 en preparación: mapa propio de eucalipto
+
+Los scripts de la v2 (eucalipto separado del pino, Landsat 2011-2024) están en [`scripts/v2/`](scripts/v2/LEEME.md). Cuando se corran, la base FIRELAB y los modelos toman la v2 sin otros cambios.
+
 ## Archivos
 
 | Archivo | Contenido |
