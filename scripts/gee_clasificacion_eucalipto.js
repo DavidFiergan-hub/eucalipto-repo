@@ -15,7 +15,9 @@ var mb = ee.Image('projects/mapbiomas-public/assets/ecuador/collection3/mapbioma
   .select('classification_' + ANIO);  // verificar el nombre del asset en ecuador.mapbiomas.org
 
 // Área de estudio: Ecuador continental >= 1000 m
-var dem = ee.ImageCollection('COPERNICUS/DEM/GLO30').select('DEM').mosaic();
+var demCol = ee.ImageCollection('COPERNICUS/DEM/GLO30').select('DEM');
+// Sin setDefaultProjection la pendiente sale mal (el mosaico queda en una proyección de 1 grado)
+var dem = demCol.mosaic().setDefaultProjection(demCol.first().projection());
 var ecuador = ee.FeatureCollection('FAO/GAUL/2015/level0').filter(ee.Filter.eq('ADM0_NAME', 'Ecuador'))
   .geometry().intersection(ee.Geometry.Rectangle([-81.2, -5.1, -75.1, 1.6]), 100);
 var sierra = dem.gte(1000).clip(ecuador);
